@@ -41,6 +41,6 @@ Then, the neural network is trained with the data.
 ![Train net](/screenshots/train_net.png)
 
 Finaly, the neural network predict a f(x, y) with random x, y values and the net is saved.
-![Predict function](/screenshots/prediction.png)
+![Predict function](/screenshots/prediction_net.png)
 
 To open the network file, "net.aic", the function "openNeuralNet" must be used.
