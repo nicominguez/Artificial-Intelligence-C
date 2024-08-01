@@ -31,7 +31,7 @@ Finaly, the executable, "example", has been created.
 Now, a neural network will be build to predict the output of f(x, y) = sin(x) - y. This function is:
 ![Function](/screenshots/function.png)
 
-First, the AI is inicialized and the data are prepared.
+First, the AI is inicialized and the data are prepared. If data (input, output) isn't in [0, 1] need be normalized.
 ![Data](/screenshots/prepare_data.png)
 
 Second, the neural network is built with the number of the layers, number of neurons per layer, activation functions and description.
