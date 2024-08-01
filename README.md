@@ -40,7 +40,9 @@ Second, the neural network is built with the number of the layers, number of neu
 Then, the neural network is trained with the data.
 ![Train net](/screenshots/train_net.png)
 
-Finaly, the neural network predict a f(x, y) with random x, y values and the net is saved.
+Finaly, the neural network predict a f(x, y) with random x, y values and the net is saved. To open the network file, "net.aic",
+the function "openNeuralNet" must be used.
 ![Predict function](/screenshots/prediction_net.png)
 
-To open the network file, "net.aic", the function "openNeuralNet" must be used.
+The output by display.
+![Output by display](/screenshots/output_display.png)
