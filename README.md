@@ -28,7 +28,7 @@ make compile
 Finaly, the executable, "example", has been created.
 
 ### Example
-Now, a neural network will be build to predict the output of f(x, y) = sin(x) - y. This function is:
+A neural network will be build to predict the output of f(x, y) = sin(x) - y with x,y in [0, 5]. This function is:
 ![Function](/screenshots/function.jpg)
 
 First, the AI is inicialized and the data are prepared. If data (input, output) isn't in [0, 1] need be normalized.
