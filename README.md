@@ -21,6 +21,7 @@ git clone https://github.com/eloyUA/Artificial-Intelligence-C
 Then, the example and "AI_modules" are compiled with a makefile, so make need to be installed.
 ```
 cd Artificial-Intelligence-C
+mkdir /AI_modules/compilations
 make compile
 ```
 
