@@ -35,7 +35,7 @@ First, the AI is inicialized and the data are prepared.
 ![Data](/screenshots/prepare_data.png)
 
 Second, the neural network is built with the number of the layers, number of neurons per layer, activation functions and description.
-ª[Build net](/screenshots/build_net.png)
+![Build net](/screenshots/build_net.png)
 
 Then, the neural network is trained with the data.
 ![Train net](/screenshots/train_net.png)
