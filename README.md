@@ -8,7 +8,7 @@ This repository alllows the creation of small neural networks in C.
 
 ### General info
 The "AI_modules" has been created to build small neural networks in C and to understand how a neural network works.
-Therefore, the program for creating neural networks is "AI_modules", "ai".
+The program for creating neural networks is "AI_modules", "ai".
 The "example.c" is an example of how to use "AI_modules", "ai". To compile this example, we have "makefile". Moreover, "net.aic"
 is the neural network built by "example.c".
 
