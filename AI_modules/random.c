@@ -147,9 +147,13 @@ int uniformDistributionWithException(int m, int n, int l[], int long_l) {
  * INPUT: None
  * REQUIREMENTS: None
  * OUTPUT: A number of a normal distribution.
+ * INFORMATION:
+ *      http://nuclear.fis.ucm.es/nuevaweb/html/docencia/mas_montecarlol.htm
  */
-float normalDistribution() { // http://nuclear.fis.ucm.es/nuevaweb/html/docencia/mas_montecarlol.htm
-    return sqrt(-2.0*log((double) (uniformDistribution(0, 1)))) * cos(2.0*PI*uniformDistribution(0, 1));
+float normalDistribution() {
+    float n1 = uniformDistribution(0, 1);
+    float n2 = uniformDistribution(0, 1);
+    return sqrt(-2.0*log((double) n1)) * cos(2.0*PI*n2);
 }
 
 /**
@@ -157,8 +161,10 @@ float normalDistribution() { // http://nuclear.fis.ucm.es/nuevaweb/html/docencia
  * INPUT: lambda
  * REQUIREMENTS: lambda > 0
  * OUTPUT: A number of a exponential distribution.
+ * INFORMATION:
+ *      http://nuclear.fis.ucm.es/nuevaweb/html/docencia/mas_montecarlol.htm
  */
-float exponentialDistribution(float lambda) { // http://nuclear.fis.ucm.es/nuevaweb/html/docencia/mas_montecarlol.htm
+float exponentialDistribution(float lambda) {
     if (lambda <= 0) {
         errorRandom("lamdba must be greather than 0");
     }

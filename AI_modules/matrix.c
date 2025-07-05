@@ -24,23 +24,6 @@ void errorMatrix(char error[]) {
         exit(-1);
 }
 
-/**
- * FUNCTION: newRandomNormMatrix
- * INPUT: 
- *      sr: Number of rows (unsigned short).
- *      sc: Number of columns (unsigned short)
- * REQUIREMENTS: 1 <= sr <= MAX_ROWS and 1 <= sc <= MAX_COLUMNS
- * OUTPUT: A random matrix of size srXsc. It's numbers come from a
- *      normal distribution.
- *      Clarification:
- *          a b c d
- *          e f g h
- *          i j k l
- *          m n o p
- *      
- *      In the previous matrix, the position (0, 0) is a.
- *      (row, column).
- */
 void newRandomNormMatrix(Matrix *m, unsigned short sr, unsigned short sc) {
     if (sr > MAX_ROWS || sc > MAX_COLUMNS) {
         errorMatrix("The normal matrix can't be created because is very big.");
@@ -56,23 +39,6 @@ void newRandomNormMatrix(Matrix *m, unsigned short sr, unsigned short sc) {
     m->transpose = false;
 }
 
-/**
- * FUNCTION: newRandomMatrix
- * INPUT: 
- *      sr: Number of rows (unsigned short).
- *      sc: Number of columns (unsigned short)
- * REQUIREMENTS: 1 <= sr <= MAX_ROWS and 1 <= sc <= MAX_COLUMNS
- * OUTPUT: A random matrix of size srXsc.
- *      Clarification:
- *          a b c d
- *          e f g h
- *          i j k l
- *          m n o p
- *      
- *      In the previous matrix, the position (0, 0) is a.
- *      (row, column).
- * COST: O(1)
- */
 void newRandomMatrix(Matrix *m, unsigned short sr, unsigned short sc) {
     if (sr > MAX_ROWS || sc > MAX_COLUMNS) {
         errorMatrix("The matrix can't be created because is very big.");
@@ -83,21 +49,10 @@ void newRandomMatrix(Matrix *m, unsigned short sr, unsigned short sc) {
     m->transpose = false;
 }
 
-/**
- * FUNCTION: MCMatrix
- * INPUT: 
- *      r: Row (unsigned short).
- *      c: Column (unsigned short).
- *      n (float).
- * REQUIREMENTS:
- *      0 <= r < number of rows
- *      0 <= c < number of columns
- * OUTPUT: A matrix with the (r, c) component changed to n.
- * COST: O(1)
- */
 void MCMatrix(Matrix *m, unsigned short r, unsigned short c, float n) {
     if (r >= m->size_row || c >= m->size_col) {
-        errorMatrix("The position (r, c) can't be modified because it's out of range.");
+        errorMatrix(
+            "The position (r, c) can't be modified because it's out of range.");
     }
 
     if (m->transpose) {
@@ -108,19 +63,6 @@ void MCMatrix(Matrix *m, unsigned short r, unsigned short c, float n) {
     }
 }
 
-/**
- * FUNCTION: FastMCMatrix
- * INPUT: 
- *      r: Row (unsigned short).
- *      c: Column (unsigned short).
- *      n (float).
- * REQUIREMENTS:
- *      0 <= r < number of rows
- *      0 <= c < number of columns
- *      WARNING: This function DOESN'T CHECK IT.
- * OUTPUT: A matrix with the (r, c) component changed to n.
- * COST: O(1) MORE FAST
- */
 void FastMCMatrix(Matrix *m, unsigned short r, unsigned short c, float n) {
     if (m->transpose) {
         m->val[c][r] = n;
@@ -130,21 +72,10 @@ void FastMCMatrix(Matrix *m, unsigned short r, unsigned short c, float n) {
     }
 }
 
-/**
- * FUNCTION: CCMatrix
- * INPUT: 
- *      m (Matrix).
- *      r: Row (unsigned short).
- *      c: Column (unsigned short).
- * REQUIREMENTS:
- *      0 <= r < number of rows
- *      0 <= c < number of columns
- * OUTPUT: The value of the position (r, c) of the matrix.
- * COST: O(1)
- */
 float CCMatrix(Matrix m, unsigned short r, unsigned short c) {
     if (r >= m.size_row || c >= m.size_col) {
-        errorMatrix("The position (r, c) can't be consulted because it's out of range.");
+        errorMatrix(
+            "The position (r, c) can't be consulted because it's out of range.");
     }
 
     float n;
@@ -159,19 +90,6 @@ float CCMatrix(Matrix m, unsigned short r, unsigned short c) {
     return n;
 }
 
-/**
- * FUNCTION: FastCCMatrix
- * INPUT: 
- *      m (Matrix).
- *      r: Row (unsigned short).
- *      c: Column (unsigned short).
- * REQUIREMENTS:
- *      0 <= r < number of rows
- *      0 <= c < number of columns
- *      WARNING: This function DOESN'T CHECK IT.
- * OUTPUT: The value of the position (r, c) of the matrix.
- * COST: O(1) MORE FAST
- */
 float FastCCMatrix(Matrix m, unsigned short r, unsigned short c) {
     float n;
 
@@ -185,37 +103,14 @@ float FastCCMatrix(Matrix m, unsigned short r, unsigned short c) {
     return n;
 }
 
-/**
- * FUNCTION: numberRows
- * INPUT: A matrix.
- * REQUIREMENTS: None
- * OUTPUT: The number of rows.
- * COST: O(1)
- */
 unsigned short numberRows(Matrix m) {
     return m.size_row;
 }
 
-/**
- * FUNCTION: numberColumns
- * INPUT: A matrix.
- * REQUIREMENTS: None
- * OUTPUT: The number of columns.
- * COST: O(1)
- */
 unsigned short numberColumns(Matrix m) {
     return m.size_col;
 }
 
-/**
- * FUNCTION: transposeMatrix
- * INPUT: A matrix, m.
- * REQUIREMENTS:
- *      number of the rows <= MAX_COLUMNS
- *      number of the columns <= MAX_ROWS
- * MODIFIES: m = m' (transpose)
- * COST: O(1)
- */
 void transposeMatrix(Matrix *m) {
     unsigned short aux;
 
@@ -225,46 +120,6 @@ void transposeMatrix(Matrix *m) {
     m->transpose = !m->transpose;
 }
 
-/**
- * FUNCTION: addMatrix
- * INPUT:
- *      m1 (Matrix).
- *      m2 (Matrix).
- * REQUIREMENTS: m1|m2 (MxN) and m2|m1 (MxN) OR
- *      m1|m2 (1xN) and m2|m1 (MxN) OR m1|m2 (Nx1) and
- *      m2|m1 (NxM)
- * OUTPUT: The matrix m, that is m1+m2.
- *      Clarification:
- *          Case 1:
- *              1 2
- *              0 1 is m1|m2 (rows=2, columns=2)
- * 
- *              0 1
- *              1 0 is m2|m1 (rows=2, columns=2)
- * 
- *              1 3
- *              1 1 is m (rows=2, columns=2)
- * 
- *          Case 2:
- *              1 -2 4 is m1|m2 (rows=1, columns=3)
- *              
- *              2 3 1
- *              1 1 3 is m2|m1 (rows=2, columns=3)
- *              
- *              3 1 5
- *              2 -1 7 is m (rows=2, columns=3)
- *          
- *          Case 3:
- *              3
- *              1 is m1|m2 (rows=2, columns=1)
- *              
- *              2 3 1
- *              1 1 3 is m2|m1 (rows=2, columns=3)
- *              
- *              5 6 4
- *              2 2 4 is m (rows=2, columns=3)
- * COST: O(MxN)
- */
 void addMatrix(Matrix *m, Matrix m1, Matrix m2) {
     bool equal_r, equal_c;
 
@@ -334,15 +189,6 @@ void addMatrix(Matrix *m, Matrix m1, Matrix m2) {
     }
 }
 
-/**
- * FUNCTION: subtractMatrix
- * INPUT:
- *      m1 (Matrix MxN).
- *      m2 (Matrix MxN).
- * REQUIREMENTS: The sizes equals.
- * OUTPUT: The matrix m, that is m1-m2.
- * COST: O(MxN)
- */
 void subtractMatrix(Matrix *m, Matrix m1, Matrix m2) {
     if (m1.size_row != m2.size_row || m1.size_col != m2.size_col) {
         errorMatrix("m1 and m2 cannot be subtracted.");
@@ -360,17 +206,6 @@ void subtractMatrix(Matrix *m, Matrix m1, Matrix m2) {
     }
 }
 
-/**
- * FUNCTION: multiplyMatrix
- * INPUT:
- *      m1 (Matrix, size MxH).
- *      m2 (Matrix, size HxN).
- * REQUIREMENTS: 
- *      The number columns of m1 must be equal to number rows
- *      of m2.
- * OUTPUT: The matrix m, that is m1*m2, so size of m is MxN
- * COST: O(MXNXH)
- */
 void multiplyMatrix(Matrix *m, Matrix m1, Matrix m2) {
     if (m1.size_col != m2.size_row) {
         errorMatrix("The m1 and m2 cannot be multiply due to dimensions");
@@ -400,19 +235,6 @@ void multiplyMatrix(Matrix *m, Matrix m1, Matrix m2) {
     }
 }
 
-/**
- * FUNCTION: multiplyNumbersMatrix
- * INPUT:
- *      m1 (Matrix, size MxN).
- *      m2 (Matrix, size MxN).
- * REQUIREMENTS: 
- *      Same sizes.
- * OUTPUT: The matrix m, that is m1*m2, so size of m is MxN
- *      Ej:
- *               1 2 3         1 1 3        1 2 9
- *          m1 = 0 1 1    m2 = 0 1 0    m = 0 1 0
- * COST: O(MxN)
- */
 void multiplyNumbersMatrix(Matrix *m, Matrix m1, Matrix m2) {
     if (m1.size_row != m2.size_row || m1.size_col != m2.size_col) {
         errorMatrix("The matrix m1 and m2 haven't same sizes.");
@@ -428,16 +250,6 @@ void multiplyNumbersMatrix(Matrix *m, Matrix m1, Matrix m2) {
     }
 }
 
-/**
- * FUNCTION: meanMatrix
- * INPUT: A matrix m whose size is (MxN).
- * REQUIREMENTS: None.
- * OUTPUT: A matrix mean whose size is (1xN).
- *      Example: 
- *              1 0 3                      
- *          m = 4 5 -1 Size (2x3)   mean = 5/2 5/2 2/2 Size (1x3)
- * COST: O(MxN)
- */
 void meanMatrix(Matrix *mean, Matrix m) {
     float s;
     
@@ -453,15 +265,6 @@ void meanMatrix(Matrix *mean, Matrix m) {
     }
 }
 
-/**
- * FUNCTION: multiplyNumberAndMatrix
- * INPUT:
- *      m1 (Matrix, MxN).
- *      n (float).
- * REQUIREMENTS: None.
- * OUTPUT: The matrix m, that is n*m1.
- * COST: O(MxN)
- */
 void multiplyNumberAndMatrix(Matrix *m, Matrix m1, float n) {
     m->size_row = m1.size_row;
     m->size_col = m1.size_col;
@@ -473,18 +276,6 @@ void multiplyNumberAndMatrix(Matrix *m, Matrix m1, float n) {
     }
 }
 
-/**
- * FUNCTION: MSEMatrix
- * INPUT:
- *      m1 (Matrix MxN).
- *      m2 (Matrix MxN).
- * REQUIREMENTS: The sizes of m1 and m2 must be equals.
- * OUTPUT: MSE (float).
- *      Example:
- *               1 2 5        0 3 6
- *          m1 = 0 1 4   m2 = 2 1 3   MSE(m1, m2) = 8/6
- * COST: O(MxN)
- */
 float MSEMatrix(Matrix m1, Matrix m2) {
     if (m1.size_row != m2.size_row || m1.size_col != m2.size_col) {
         errorMatrix("The m1 and m2 have to be same sizes.");
@@ -506,29 +297,10 @@ float MSEMatrix(Matrix m1, Matrix m2) {
     return mean;
 }
 
-/**
- * FUNCTION: derivMSEMatrix
- * INPUT:
- *      m1 (Matrix MxN).
- *      m2 (Matrix MxN).
- * REQUIREMENTS: The sizes of m1 and m2 must be equals.
- * OUTPUT: The matrix m (MxN). 
- *      Example:
- *               1 2 5        0 3 6                     1 -1 -1
- *          m1 = 0 1 4   m2 = 2 1 3   m = MSE(m1, m2) = -2 0 1
- * COST: O(MxN)
- */
 void derivMSEMatrix(Matrix *m, Matrix m1, Matrix m2) {
     subtractMatrix(m, m1, m2);
 }
 
-/**
- * FUNCTION: minMaxMatrix
- * INPUT: A matrix (MxN).
- * REQUIREMENTS: None.
- * OUTPUT: min (float) and max (float).
- * COST: O(MxN)
- */
 void minMaxMatrix(float *min, float *max, Matrix m) {
     float aux;
 
@@ -548,13 +320,6 @@ void minMaxMatrix(float *min, float *max, Matrix m) {
     }
 }
 
-/**
- * FUNCTION: normalizationMatrix
- * INPUT: A matrix (MxN), min (float) and max (float).
- * REQUIREMENTS: None.
- * OUTPUT: The matrix normalized.
- * COST: O(MxN)
- */
 void normalizationMatrix(Matrix *m, float min, float max) {
     float dif;
 
@@ -566,13 +331,6 @@ void normalizationMatrix(Matrix *m, float min, float max) {
     }
 }
 
-/**
- * FUNCTION: denormalizeMatrix
- * INPUT: A matrix (MxN), min (float) and max (float).
- * REQUIREMENTS: None.
- * OUTPUT: The matrix denormalized.
- * COST: O(MxN)
- */
 void denormalizeMatrix(Matrix *m, float min, float max) {
     float dif;
 
@@ -616,17 +374,10 @@ bool numberInArray(int l[], int length_l, int n) {
     return l[j] == length_l;
 }
 
-/**
- * FUNCTION: suffleRowsMatrix
- * INPUT: A matrix (MxN).
- * REQUIREMENTS: The number of rows of the matrix > 1.
- * MODIFIES: The matrix.
- * OUTPUT: Other matrix, decisions.
- * COST: O(Cubic)
- */
 void suffleRowsMatrix(Matrix *m, Matrix *decisions) {
     if (numberRows(*m) <= 1) {
-        errorMatrix("The matrix cannot be suffled because it has fewer that two rows.");
+        errorMatrix(
+            "The matrix cannot be suffled because it has fewer that two rows.");
     }
 
     /**
@@ -678,30 +429,12 @@ void suffleRowsMatrix(Matrix *m, Matrix *decisions) {
     MCMatrix(decisions, numberRows(*m) / 2 - 1, 1, r2);
 }
 
-/**
- * FUNCTION: sortRowsMatrix
- * INPUT: A matrix and the decision (Matrix).
- * REQUIREMENTS: 
- *      m (MxN).
- *      decisions (M/2x2)
- * MODIFIES: The matrix.
- * COST: O(M/2)
- */
 void sortRowsMatrix(Matrix *m, Matrix decisions) {
     for (int i = 0; i < numberRows(decisions); i++) {
         swapRow(m, FastCCMatrix(decisions, i, 0), FastCCMatrix(decisions, i, 1));
     }
 }
 
-/**
- * FUNCTION: cutMatrix
- * INPUT: A matrix, m (MxN) and a number.
- * REQUIREMENTS: 0 < number (n) < M.
- * OUTPUTS: Two matrix whose union of rows is m.
- *      In m1 there are n rows of m and in
- *      m2 there are the remaining rows of m.
- * COST: O(MxN)
- */
 void cutMatrix(Matrix *m1, Matrix *m2, Matrix m, unsigned int n) {
     if (n >= m.size_row) {
         errorMatrix("The number is greather that rows.");
@@ -726,12 +459,6 @@ void cutMatrix(Matrix *m1, Matrix *m2, Matrix m, unsigned int n) {
     }
 }
 
-/**
- * FUNCTION: showMatrix
- * INPUT: A matrix.
- * REQUIREMENTS: None.
- * OUTPUT: Show the matrix.
- */
 void showMatrix(Matrix m) {
     printf("\n");
     for (int i = 0; i < m.size_row; i++) {
@@ -743,21 +470,14 @@ void showMatrix(Matrix m) {
     }
 }
 
-/**
- * FUNCTION: writeMatrix
- * INPUT:
- *      f (FILE binary of floats).
- *      m (Matrix).
- * REQUIREMENTS: None.
- * MODIFIES: The matrix m, is saved in file f.
- *      And the boolean is the error.
- */
 void writeMatrix(FILE *f, bool *error, Matrix m) {
     float sr, sc;
     
     sr = (float) (m.size_row);
     sc = (float) (m.size_col);
-    if (fwrite(&sr, sizeof(float), 1, f) != 1 || fwrite(&sc, sizeof(float), 1, f) != 1) {
+    if (fwrite(&sr, sizeof(float), 1, f) != 1 ||
+        fwrite(&sc, sizeof(float), 1, f) != 1) {
+
         *error = true;
     }
     else {
@@ -784,24 +504,19 @@ void writeMatrix(FILE *f, bool *error, Matrix m) {
     }
 }
 
-/**
- * FUNCTION: readMatrix
- * INPUT:
- *      f (FILE *).
- * REQUIREMENTS: None.
- * MODIFIES: The matrix m, is read from file f.
- *      And the boolean is the error.
- */
 void readMatrix(Matrix *m, FILE *f, bool *error) {
     float sr, sc;
 
-    if (fread(&sr, sizeof(float), 1, f) != 1 || fread(&sc, sizeof(float), 1, f) != 1) {
+    if (fread(&sr, sizeof(float), 1, f) != 1 ||
+        fread(&sc, sizeof(float), 1, f) != 1) {
+            
         *error = true;
     }
     else {
         m->size_row = (unsigned short) (sr);
         m->size_col = (unsigned short) (sc);
-        m->transpose = !(sr <= MAX_ROWS && sc <= MAX_COLUMNS) && (sr <= MAX_COLUMNS && sc <= MAX_ROWS);
+        m->transpose = !(sr <= MAX_ROWS && sc <= MAX_COLUMNS) &&
+                        (sr <= MAX_COLUMNS && sc <= MAX_ROWS);
         if (sr <= MAX_ROWS && sc <= MAX_COLUMNS) {
             m->transpose = false;
         }
