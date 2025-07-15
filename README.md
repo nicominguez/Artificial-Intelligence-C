@@ -1,10 +1,11 @@
 # Artificial-Intelligence-C
+
 This repository alllows the creation of small neural networks in C.
 
 ## Table of Contents
-1. [General info](#general-info)
-2. [Installation](#installation)
-3. [Example](#example)
+1. 📖 [General info](#general-info)
+2. 📦 [Installation](#installation)
+3. 📝 [Example](#example)
 
 ### General info
 The "AI_modules" has been created to build small neural networks in C and to understand how a neural network works.
@@ -13,6 +14,7 @@ The "example.c" is an example of how to use "AI_modules", "ai". To compile this 
 is the neural network built by "example.c".
 
 ### Installation
+
 First, the repository is installed.
 ```
 git clone https://github.com/eloyUA/Artificial-Intelligence-C
@@ -28,6 +30,7 @@ make compile
 Finaly, the executable, "example", has been created.
 
 ### Example
+
 A neural network will be built to predict the output of f(x, y) = sin(x) - y with x,y in [0, 5]. This function is:
 ![Function](/screenshots/function.jpg)
 
