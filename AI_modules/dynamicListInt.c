@@ -26,7 +26,7 @@ void errorDynamicListInt(char error[]) {
 }
 
 /**
- * FUNCTION: newdynamicListInt
+ * FUNCTION: newDynamicListInt
  * INPUT: None.
  * REQUIREMENTS: None.
  * OUTPUT: An empty dynamic list.
