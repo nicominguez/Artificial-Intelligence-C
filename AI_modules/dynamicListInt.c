@@ -25,24 +25,12 @@ void errorDynamicListInt(char error[]) {
     }
 }
 
-/**
- * FUNCTION: newDynamicListInt
- * INPUT: None.
- * REQUIREMENTS: None.
- * OUTPUT: An empty dynamic list.
- */
 void newDynamicListInt(dynamicListInt *l) {
     l->first = NULL;
     l->last = NULL;
     l->n_elem = 0;
 }
 
-/**
- * FUNCTION: appendDynamicListInt
- * INPUT: A dynamic list and an element (int).
- * REQUIREMENTS: The length of dynamic list < 2^63 - 1
- * MODIFIES: Add the element (int) to the end of the dynamic list.
- */
 void appendDynamicListInt(dynamicListInt *l, int elem) {
     nodeInt *aux;
 
@@ -72,16 +60,23 @@ void appendDynamicListInt(dynamicListInt *l, int elem) {
 /**
  * FUNCTION: searchPosDynamicListInt
  * INPUT: A dynamic list and a position (unsigned long long).
- * REQUIREMENTS: lengthDynamicListInt(list) > 1 and 0 < position < lengthDynamicListInt(list)
- * OUTPUT: current = A pointer to the memory address of the node whose position is pos.
- *      previous = A pointer to the memory address of the previous node whose position is pos.
+ * REQUIREMENTS:
+ *      lengthDynamicListInt(list) > 1 and 
+ *      0 < position < lengthDynamicListInt(list)
+ * OUTPUT:
+ *      current = A pointer to the memory address of the node whose position is pos.
+ *      previous = A pointer to the memory address of the previous node whose
+ *      position is pos.
  */
-void searchPosDynamicListInt(nodeInt **current, nodeInt **previous, dynamicListInt l, unsigned long long pos) {
+void searchPosDynamicListInt(nodeInt **current, nodeInt **previous,
+                            dynamicListInt l, unsigned long long pos) {
     if (lengthDynamicListInt(l) <= 1) {
-        errorDynamicListInt("A position can't be searched in an empty list or with one element.");
+        errorDynamicListInt(
+            "A position can't be searched in an empty list or with one element.");
     }
     else if (pos <= 0 || pos >= lengthDynamicListInt(l)) {
-        errorDynamicListInt("The position is out of range. The position can't be searched.");
+        errorDynamicListInt(
+            "The position is out of range. The position can't be searched.");
     }
 
     unsigned long long count;
@@ -96,18 +91,13 @@ void searchPosDynamicListInt(nodeInt **current, nodeInt **previous, dynamicListI
     }
 }
 
-/**
- * FUNCTION: consultElemDynamicListInt
- * INPUT: A dynamic list, and a position (unsigned long long).
- * REQUIREMENTS: 0 <= position < lengthDynamicListInt(list) and lengthDynamicListInt(list) > 0
- * OUTPUT: The element (int) at the position.
- */
 int consultElemDynamicListInt(dynamicListInt l, unsigned long long pos) {
     if (lengthDynamicListInt(l) == 0) {
         errorDynamicListInt("An element can't be consulted in an empty list.");
     }
     else if (pos < 0 || pos >= lengthDynamicListInt(l)) {
-        errorDynamicListInt("The position is out of range. The element can't be consulted.");
+        errorDynamicListInt(
+            "The position is out of range. The element can't be consulted.");
     }
 
     int elem;
@@ -123,12 +113,6 @@ int consultElemDynamicListInt(dynamicListInt l, unsigned long long pos) {
     return elem;
 }
 
-/**
- * FUNCTION: freeDynamicListInt
- * INPUT: A dynamic list.
- * REQUIREMENTS: None.
- * OUTPUT: The empty dynamic list.
- */
 void freeDynamicListInt(dynamicListInt *l) {
     nodeInt *aux;
     while (lengthDynamicListInt(*l) > 0) {
@@ -140,12 +124,6 @@ void freeDynamicListInt(dynamicListInt *l) {
     }
 }
 
-/**
- * FUNCTION: lengthDynamicListInt
- * INPUT: A dynamic list.
- * REQUIREMENTS: None.
- * OUTPUT: The length of the dynamic list.
- */
 unsigned long long lengthDynamicListInt(dynamicListInt l) {
     return l.n_elem;
 }
