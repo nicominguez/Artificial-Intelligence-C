@@ -48,7 +48,8 @@ typedef struct {
  * OUTPUT:
  *      A neural network (NeuralNet).
  */
-void newNeuralNet(NeuralNet *, unsigned char[], unsigned char[], char[MAX_DESCRIPTION], unsigned char);
+void newNeuralNet(NeuralNet *, unsigned char[], unsigned char[],
+                char[MAX_DESCRIPTION], unsigned char);
 
 /**
  * FUNCTION: trainNeuralNet
@@ -97,7 +98,9 @@ void newNeuralNet(NeuralNet *, unsigned char[], unsigned char[], char[MAX_DESCRI
  *      number of epochs completed (unsigned int).
  * MODIFIES: The neural network.
  */
-void trainNeuralNet(NeuralNet *, float *init_MSE, float *end_MSE, float *min_MSE, unsigned int *n_epoch_completed, Matrix, Matrix, unsigned int, float, bool);
+void trainNeuralNet(NeuralNet *, float *init_MSE, float *end_MSE, float *min_MSE,
+                    unsigned int *n_epoch_completed, Matrix, Matrix, unsigned int,
+                    float, bool);
 
 /**
  * FUNCTION: predict
